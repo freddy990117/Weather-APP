@@ -20,7 +20,7 @@ body .container {
   background-color: #fff;
   height: 105px;
   width: 400px;
-  padding: 20px 32px;
+  padding: 28px 32px;
   border-radius: 18px;
   overflow: hidden;
 }
@@ -32,7 +32,8 @@ body .container .search-box {
 }
 body .container .search-box i {
   position: absolute;
-  font-size: 25px;
+  font-size: 24px;
+  color: #06283d;
 }
 body .container .search-box input {
   width: 80%;
@@ -68,16 +69,71 @@ body .container .search-box button:hover {
 }
 body .container .not-found {
   border: 1px solid black;
+  width: 100%;
+  text-align: center;
+  display: none;
+  scale: 0;
+  opacity: 0;
+}
+body .container .not-found img {
+  margin-top: 10px;
+  width: 90%;
+}
+body .container .not-found p {
+  font-size: 20px;
+  color: #06283d;
 }
 body .container .weather-box {
   border: 1px solid black;
 }
-body .container .weatherDetails {
+body .container .weather-Details {
+  width: 100%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+}
+body .container .weather-Details .humidity,
+body .container .weather-Details .wind {
+  display: flex;
+  align-items: center;
+  color: #06283d;
+  width: 50%;
+  height: 100px;
+}
+body .container .weather-Details .humidity i,
+body .container .weather-Details .wind i {
+  font-size: 20px;
+  margin-right: 5px;
+}
+body .container .weather-Details .humidity p,
+body .container .weather-Details .wind p {
+  font-size: 15px;
+}
+body .container .weather-Details .humidity {
+  display: flex;
+  padding-left: 30px;
+  justify-content: flex-start;
   border: 1px solid black;
 }
-body .container .weatherDetails .humidity {
+body .container .weather-Details .wind {
+  display: flex;
+  padding-right: 30px;
+  justify-content: flex-end;
   border: 1px solid black;
 }
-body .container .weatherDetails .wind {
-  border: 1px solid black;
+body .container .weather-box,
+body .container .weather-Details {
+  opacity: 0;
+  scale: 0;
+}
+body .fade-in {
+  animation: 0.5s fadeIn forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    scale: 1;
+  }
 }/*# sourceMappingURL=style.css.map */
