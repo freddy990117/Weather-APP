@@ -14,6 +14,12 @@ const wind = document.querySelector(".weather-Details .wind span");
 
 // 1.先將 fetch Data 分割出來
 const fetchWeather = () => {
+  // 重新 fetch 時先讓舊天氣資訊消失
+  weatherBox.style.transform = "scale(0)";
+  weatherDetails.style.transform = "scale(0)";
+  weatherBox.style.opacity = "0";
+  weatherDetails.style.opacity = "0";
+
   const city = document.querySelector(".search-box input").value;
   const APIKey = "d4f28db3d2a09114f45439c6fb382b9a";
   fetch(
@@ -33,17 +39,12 @@ const fetchWeather = () => {
         weatherBox.style.display = "block";
         error404.style.display = "none";
 
-        weatherBox.style.transform = "scale(0)";
-        weatherDetails.style.transform = "scale(0)";
-        weatherBox.style.opacity = "0";
-        weatherDetails.style.opacity = "0";
-
         // 設定得到數值並 取代/顯示 在 HTNL 上
         temperature.innerHTML = `${parseInt(result.main.temp)}°Ｃ`;
         description.innerHTML = `${result.weather[0].description}`;
         humidity.innerHTML = `${result.main.humidity}%`;
         wind.innerHTML = `${result.wind.speed}km/h`;
-        // 根據天氣顯示相應的圖片（此情境較適合使用 Switch case（簡單的情境） ）
+        // 根據天氣顯示相應的圖片（ 此情境較適合使用 Switch case（簡單的情境））
         switch (result.weather[0].main) {
           case "Clear":
             image.src = "./images/clear.png";
@@ -67,12 +68,17 @@ const fetchWeather = () => {
         }
       }
 
-      setTimeout(() => {
-        weatherBox.style.transform = "scale(1)";
-        weatherBox.style.opacity = "1";
-        weatherDetails.style.transform = "scale(1)";
-        weatherDetails.style.opacity = "1";
-      }, 500);
+      setTimeout(
+        () => {
+          // 顯示新天氣資訊
+          weatherBox.style.transform = "scale(1)";
+          weatherBox.style.opacity = "1";
+          weatherDetails.style.transform = "scale(1)";
+          weatherDetails.style.opacity = "1";
+        },
+        // ★ 等待 0.5 秒確定舊內容縮小後再顯示新內容 ★
+        500
+      );
     });
   });
 };
@@ -81,10 +87,13 @@ const fetchWeather = () => {
 const input = document.querySelector(".search-box input");
 input.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
+    e.preventDefault(); // 防止預設行為
+    if (input.value.trim() === "") return; // 如果是空值，就不執行 fetchWeather
     fetchWeather();
   }
 });
 // 3.點選搜尋後執行 fetch Data
 search.addEventListener("click", () => {
+  if (input.value.trim() === "") return;
   fetchWeather();
 });
