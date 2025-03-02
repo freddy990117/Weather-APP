@@ -80,6 +80,7 @@ body .container .weather-box img {
   width: 100%;
 }
 body .container .weather-box .temperature {
+  margin-top: 20px;
   font-size: 28px;
   font-weight: 800;
 }
@@ -92,6 +93,7 @@ body .container .weather-Details {
   opacity: 0;
   scale: 0;
   display: flex;
+  margin-top: 20px;
   justify-content: space-between;
 }
 body .container .weather-Details .humidity,
