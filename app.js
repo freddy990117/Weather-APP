@@ -21,7 +21,7 @@ const fetchWeather = () => {
   weatherDetails.style.opacity = "0";
 
   const city = document.querySelector(".search-box input").value;
-  const APIKey = "d4f28db3d2a09114f45439c6fb382b9a";
+  const APIKey = "My Secret";
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`
   ).then((response) => {
